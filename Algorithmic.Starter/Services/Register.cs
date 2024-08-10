@@ -11,6 +11,7 @@ class Register
     {
         this.reg = reg;
     }
+
     internal bool GetValue(string program)
     {
         bool result = false;
@@ -26,6 +27,7 @@ class Register
         }
         return result;
     }
+
     internal string? AddStartupProgram(string program, string fileName)
     {
         using (var regKey = Registry.CurrentUser.OpenSubKey(reg, true))
@@ -55,9 +57,11 @@ class Register
         }
         return null;
     }
+
     internal bool IsWritable
     {
         get; set;
     }
+
     readonly string reg;
 }

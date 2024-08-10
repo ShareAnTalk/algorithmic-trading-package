@@ -18,6 +18,7 @@ static class Server
         {
             return false;
         }
+
         foreach (var file in Directory.GetFiles(parent.FullName, Resources.EXE, SearchOption.AllDirectories))
         {
             if (!nameof(Resources.ANT).Equals(Path.GetFileNameWithoutExtension(file), StringComparison.OrdinalIgnoreCase))
@@ -28,6 +29,7 @@ static class Server
 
             files.Push(new Models.File(new FileInfo(file).DirectoryName, info.FileVersion, info.FileMajorPart, info.FileMinorPart, info.FileBuildPart, info.FilePrivatePart));
         }
+
         if (files.Count == 2)
         {
             int majorPart = int.MinValue, minorPart = int.MinValue, buildPart = int.MinValue, privatePart = int.MinValue;
@@ -40,6 +42,7 @@ static class Server
                 {
                     continue;
                 }
+
                 if (majorPart <= file.MajorPart)
                 {
                     if (minorPart <= file.MinorPart)
@@ -77,6 +80,7 @@ static class Server
                     continue;
                 }
             }
+
             if (string.IsNullOrEmpty(directoryName) is false && parent.FullName.Equals(directoryName) is false)
             {
                 var removePath = directoryName.Replace(parent.FullName, string.Empty);
@@ -101,6 +105,7 @@ static class Server
         }
         return false;
     }
+
     internal static bool Update()
     {
         foreach (var process in Process.GetProcessesByName(nameof(Resources.ANT)))
@@ -109,6 +114,7 @@ static class Server
         }
         return IsActived;
     }
+
     internal static void StartProcess()
     {
         var workingDirectory = Directory.GetParent(Environment.CurrentDirectory);
@@ -128,6 +134,7 @@ static class Server
                 GC.Collect();
             }
     }
+
     internal static void StartProcess(string date)
     {
         var workingDirectory = Directory.GetParent(Environment.CurrentDirectory);
@@ -175,6 +182,7 @@ static class Server
             }
         }
     }
+
     internal static bool IsActived
     {
         get => Process.GetProcessesByName(nameof(Resources.ANT)).Length == 1;
