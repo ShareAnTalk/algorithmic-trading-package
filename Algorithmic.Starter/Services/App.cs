@@ -18,6 +18,7 @@ static class App
         {
             return;
         }
+
         foreach (var file in Directory.GetFiles(parent.FullName, Resources.EXE, SearchOption.AllDirectories))
         {
             if (!Resources.SECURITIES.Equals(Path.GetFileName(file), StringComparison.OrdinalIgnoreCase))
@@ -26,10 +27,12 @@ static class App
             }
             latestPath = Path.GetDirectoryName(file) ?? string.Empty;
         }
+
         if (dirInfo.Exists is false)
         {
             dirInfo.Create();
         }
+
         foreach (var file in Directory.GetFiles(latestPath, "*", SearchOption.AllDirectories))
         {
             var latestFileInfo = new FileInfo(file);
@@ -62,6 +65,7 @@ static class App
             File.Copy(file, presentFileInfo.FullName, true);
         }
     }
+
     internal static void StartProcess()
     {
         using (var process = new Process
@@ -81,6 +85,7 @@ static class App
             }
         }
     }
+
     internal static bool IsActived
     {
         get => Process.GetProcessesByName(Resources.SECURITIES[..^4]).Length > 0;

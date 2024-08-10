@@ -6,26 +6,32 @@ readonly struct File
     {
         get;
     }
+
     internal string? Version
     {
         get;
     }
+
     internal int MajorPart
     {
         get;
     }
+
     internal int MinorPart
     {
         get;
     }
+
     internal int BuildPart
     {
         get;
     }
+
     internal int PrivatePart
     {
         get;
     }
+
     internal File(string? directoryName, string? fileVersion, int majorPart, int minorPart, int buildPart, int privatePart)
     {
         DirectoryName = directoryName;

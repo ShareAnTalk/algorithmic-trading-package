@@ -12,6 +12,7 @@ static class Nginx
     {
         get => Process.GetProcessesByName(nameof(Nginx)).Length == 0;
     }
+
     internal static void StartProcess()
     {
         using (var process = new Process

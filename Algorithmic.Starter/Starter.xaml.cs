@@ -19,8 +19,8 @@ public partial class Starter : Window
         {
             Cursor = System.Windows.Forms.Cursors.Hand
         };
-        menu.Items.AddRange(new[]
-        {
+        menu.Items.AddRange(
+        [
             new System.Windows.Forms.ToolStripMenuItem
             {
                 Name = nameof(Properties.Resources.REGISTER),
@@ -36,7 +36,7 @@ public partial class Starter : Window
                 Name = nameof(Properties.Resources.EXIT),
                 Text = Properties.Resources.EXIT
             }
-        });
+        ]);
         icons =
         [
             Properties.Resources.UPLOAD,
@@ -61,10 +61,11 @@ public partial class Starter : Window
             {
                 if (Server.Update())
                 {
-                    notifyIcon.Text = Properties.Resources.NOTICE;
+                    notifyIcon.Text = $"{DateTime.Now:g}\n[{Properties.Resources.UPDATE}] {Properties.Resources.NOTICE}";
                 }
                 return;
             }
+
             if (nameof(Properties.Resources.REGISTER).Equals(e.ClickedItem?.Name))
             {
                 e.ClickedItem.Text = Properties.Resources.UNREGISTER.Equals(e.ClickedItem.Text) ? Properties.Resources.REGISTER : Properties.Resources.UNREGISTER;
@@ -118,7 +119,7 @@ public partial class Starter : Window
                 }
                 else
                 {
-                    notifyIcon.Text = Properties.Resources.NOTICE;
+                    notifyIcon.Text = $"{DateTime.Now:g}\n[{nameof(Server.StartProcess)}] {Properties.Resources.NOTICE}";
                 }
                 notifyIcon.Icon = icons[^1];
             }
@@ -131,6 +132,7 @@ public partial class Starter : Window
 
         Visibility = Visibility.Hidden;
     }
+
     void OnStateChanged(object sender, EventArgs e)
     {
         if (WindowState.Normal != WindowState)
@@ -138,6 +140,7 @@ public partial class Starter : Window
             Hide();
         }
     }
+
     void OnClosing(object sender, CancelEventArgs e)
     {
         if (IsUserClosing && MessageBoxResult.Cancel.Equals(MessageBox.Show(Properties.Resources.WARNING.Replace('|', '\n'), Title, MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel)))
@@ -150,17 +153,22 @@ public partial class Starter : Window
 
         GC.Collect();
     }
+
     bool IsUserClosing
     {
         get; set;
     }
+
     bool IsRegistered
     {
         get => register.GetValue(Properties.Resources.ANT);
     }
+
     readonly System.Windows.Forms.ContextMenuStrip menu;
     readonly System.Windows.Forms.NotifyIcon notifyIcon;
     readonly System.Drawing.Icon[] icons;
+
     readonly DispatcherTimer timer;
+
     readonly Register register = new(Properties.Resources.RUN);
 }
