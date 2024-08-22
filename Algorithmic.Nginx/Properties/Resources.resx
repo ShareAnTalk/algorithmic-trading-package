@@ -175,4 +175,7 @@
   <data name="POWERSHELL" xml:space="preserve">
     <value>pwsh</value>
   </data>
+  <data name="ANTALK" xml:space="preserve">
+    <value>C:\AnTalk</value>
+  </data>
 </root>

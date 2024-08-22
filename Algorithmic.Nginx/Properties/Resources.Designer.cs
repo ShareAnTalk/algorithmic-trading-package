@@ -88,6 +88,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   C:\AnTalk과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ANTALK {
+            get {
+                return ResourceManager.GetString("ANTALK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   (아이콘)과(와) 유사한 System.Drawing.Icon 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Icon BLACK {
