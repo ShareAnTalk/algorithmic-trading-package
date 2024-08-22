@@ -73,19 +73,29 @@ public partial class Starter : Window
         };
         timer.Tick += (sender, _) =>
         {
-            timer.Interval = new TimeSpan(1, 1, 1, 0xC);
-
             if (Nginx.BeOutOperation)
             {
+                timer.Interval = new TimeSpan(1, 1, 1, 0xC);
+
+                notifyIcon.Icon = icons[^1];
+                notifyIcon.Text = $"{DateTime.Now:g}";
+
                 Nginx.StartProcess();
+
+                timer.Interval = new TimeSpan(0, 0, 1);
+            }
+            else if (AnTalk.BeOutOperation)
+            {
+                timer.Interval = new TimeSpan(1, 1, 1, 0xC);
+
+                AnTalk.StartProcess();
 
                 timer.Interval = new TimeSpan(0, 0, 1);
             }
             else
             {
-                notifyIcon.Text = $"{DateTime.Now:g}";
+                notifyIcon.Icon = icons[DateTime.Now.Second % 2];
             }
-            notifyIcon.Icon = icons[^1];
         };
         InitializeComponent();
 
