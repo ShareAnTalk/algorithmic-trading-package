@@ -2,19 +2,20 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+		<TargetFramework>net8.0-windows10.0.20348.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<UseWPF>True</UseWPF>
 		<UseWindowsForms>True</UseWindowsForms>
-		<AssemblyName>launcher</AssemblyName>
+		<AssemblyName>Starter</AssemblyName>
 		<RootNamespace>ShareInvest</RootNamespace>
 		<ApplicationIcon>analytics.ico</ApplicationIcon>
 		<Authors>cyberprophet</Authors>
 		<Company>ShareInvest Corp.</Company>
-		<Product>Algorithmic Trading</Product>
+		<Product>동학개미운동</Product>
 		<Copyright>Copyright ⓒ 2024, ShareInvest Corp.</Copyright>
 		<PackageProjectUrl>https://github.com/ShareAnTalk</PackageProjectUrl>
+		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
