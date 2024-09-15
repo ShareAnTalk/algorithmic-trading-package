@@ -15,6 +15,22 @@ static class Nginx
 
     internal static void StartProcess()
     {
+        string access = nameof(Resources.ACCESS), error = nameof(Resources.ERROR), log = nameof(Resources.LOG);
+
+        static void renameFile(string filePath)
+        {
+            if (File.Exists(filePath) && Path.GetDirectoryName(filePath) is string directory)
+            {
+                var newFileName = string.Concat(Path.GetFileNameWithoutExtension(filePath), '-', DateTime.Now.ToString("d"), '.', nameof(log));
+
+                File.Move(filePath, Path.Combine(directory, newFileName), false);
+            }
+        }
+        var workingDirectory = Path.Combine(Resources.NGINX, Resources.LOG);
+
+        renameFile(string.Concat(workingDirectory, '\\', nameof(access), '.', nameof(log)));
+        renameFile(string.Concat(workingDirectory, '\\', nameof(error), '.', nameof(log)));
+
         using (var process = new Process
         {
             StartInfo = new ProcessStartInfo
@@ -36,7 +52,7 @@ static class Nginx
                             FileName = Resources.POWERSHELL,
                             UseShellExecute = false,
                             RedirectStandardInput = true,
-                            WorkingDirectory = Path.Combine(Resources.NGINX, Resources.LOG)
+                            WorkingDirectory = workingDirectory
                         }
                     })
                     {

@@ -16,6 +16,7 @@
 		<Copyright>Copyright ⓒ 2024, ShareInvest Corp.</Copyright>
 		<PackageProjectUrl>https://github.com/ShareAnTalk</PackageProjectUrl>
 		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<Version>1.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
