@@ -22,8 +22,7 @@ static class Install
 
             dirName = Path.GetDirectoryName(info.FileName);
 
-            if (string.IsNullOrEmpty(dirName) is false &&
-                dirName.EndsWith(Properties.Resources.PUBLISH, StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrEmpty(dirName) is false && dirName.EndsWith(Properties.Resources.PUBLISH, StringComparison.OrdinalIgnoreCase))
             {
 #if DEBUG
                 Debug.WriteLine(JsonConvert.SerializeObject(info, Formatting.Indented));
@@ -33,6 +32,9 @@ static class Install
                 break;
             }
         }
+
+        if (string.IsNullOrEmpty(dirName)) yield break;
+
         foreach (var file in Directory.EnumerateFiles(dirName, "*", SearchOption.AllDirectories))
         {
 #if DEBUG

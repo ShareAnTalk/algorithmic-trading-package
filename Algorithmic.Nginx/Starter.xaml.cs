@@ -3,7 +3,6 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -25,11 +24,6 @@ public partial class Starter : Window
             {
                 Name = nameof(Properties.Resources.REGISTER),
                 Text = IsRegistered ? Properties.Resources.UNREGISTER : Properties.Resources.REGISTER
-            },
-            new System.Windows.Forms.ToolStripMenuItem
-            {
-                Name = nameof(Properties.Resources.UPDATE),
-                Text = Properties.Resources.UPDATE
             },
             new System.Windows.Forms.ToolStripMenuItem
             {
@@ -55,17 +49,8 @@ public partial class Starter : Window
         {
             Interval = new TimeSpan(0, 0, 1)
         };
-        menu.ItemClicked += (sender, e) =>
+        menu.ItemClicked += (_, e) =>
         {
-            if (nameof(Properties.Resources.UPDATE).Equals(e.ClickedItem?.Name))
-            {
-                if (Server.Update())
-                {
-                    notifyIcon.Text = $"{DateTime.Now:g}\n[{Properties.Resources.UPDATE}] {Properties.Resources.NOTICE}";
-                }
-                return;
-            }
-
             if (nameof(Properties.Resources.REGISTER).Equals(e.ClickedItem?.Name))
             {
                 e.ClickedItem.Text = Properties.Resources.UNREGISTER.Equals(e.ClickedItem.Text) ? Properties.Resources.REGISTER : Properties.Resources.UNREGISTER;
@@ -86,43 +71,35 @@ public partial class Starter : Window
 
             Close();
         };
-        timer.Tick += async (sender, e) =>
+        timer.Tick += (sender, _) =>
         {
-            if (Server.IsActived)
-            {
-                if (Services.App.IsActived is false)
-                {
-                    timer.Interval = new TimeSpan(1, 1, 1, 0xC);
-
-                    await Task.Delay(Random.Shared.Next(3 * 0x400, 0xA * 0x400));
-
-                    Services.App.Activate();
-                    Services.App.StartProcess();
-
-                    timer.Interval = new TimeSpan(0, 0, 1);
-                }
-                notifyIcon.Icon = icons[DateTime.Now.Second % 2];
-            }
-            else
+            if (Nginx.BeOutOperation)
             {
                 timer.Interval = new TimeSpan(1, 1, 1, 0xC);
 
-                if (Server.Activate())
-                {
-                    Server.StartProcess(DateTime.Now.ToString("d"));
-
-                    timer.Interval = new TimeSpan(0, 0, 1);
-                }
-                else
-                {
-                    notifyIcon.Text = $"{DateTime.Now:g}\n[{nameof(Server.StartProcess)}] {Properties.Resources.NOTICE}";
-                }
                 notifyIcon.Icon = icons[^1];
+                notifyIcon.Text = $"{DateTime.Now:g}";
+
+                Nginx.StartProcess();
+
+                timer.Interval = new TimeSpan(0, 0, 1);
+            }
+            else if (AnTalk.BeOutOperation)
+            {
+                timer.Interval = new TimeSpan(1, 1, 1, 0xC);
+
+                AnTalk.StartProcess();
+
+                timer.Interval = new TimeSpan(0, 0, 1);
+            }
+            else
+            {
+                notifyIcon.Icon = icons[DateTime.Now.Second % 2];
             }
         };
         InitializeComponent();
 
-        Title = nameof(Starter);
+        Title = nameof(Nginx);
 
         timer.Start();
 

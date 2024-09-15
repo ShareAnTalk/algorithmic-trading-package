@@ -4,32 +4,23 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows10.0.20348.0</TargetFramework>
 		<Nullable>enable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
 		<UseWPF>True</UseWPF>
 		<UseWindowsForms>True</UseWindowsForms>
-		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<AssemblyName>Starter</AssemblyName>
 		<RootNamespace>ShareInvest</RootNamespace>
 		<ApplicationIcon>analytics.ico</ApplicationIcon>
 		<Authors>cyberprophet</Authors>
 		<Company>ShareInvest Corp.</Company>
 		<Product>동학개미운동</Product>
-		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<AssemblyName>Starter</AssemblyName>
-		<PackageId>Starter</PackageId>
-		<Title>ANT</Title>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>24.8.23.41</Version>
+		<Copyright>Copyright ⓒ 2024, ShareInvest Corp.</Copyright>
+		<PackageProjectUrl>https://github.com/ShareAnTalk</PackageProjectUrl>
+		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<Version>1.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Content Include="analytics.ico" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="..\..\ANT\LICENSE.txt">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
 	</ItemGroup>
 
 	<ItemGroup>
