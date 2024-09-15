@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulation", "Simulation\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ant.Modules", "..\SecuritiesModules\Ant.Modules\Ant.Modules.csproj", "{4EACAAAE-9ACC-4CE6-888C-5B2DA33E86F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithmic.Nginx", "Algorithmic.Nginx\Algorithmic.Nginx.csproj", "{7A4B4080-F488-46BC-A694-6D4718F4FB06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithmic.Nginx", "Algorithmic.Nginx\Algorithmic.Nginx.csproj", "{7A4B4080-F488-46BC-A694-6D4718F4FB06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
