@@ -19,6 +19,7 @@ public partial class App : Application
                 return;
             }
         }
+
         using (var process = new Process
         {
             StartInfo = new ProcessStartInfo
